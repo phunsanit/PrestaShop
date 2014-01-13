@@ -135,9 +135,9 @@ class ThemeCore extends ObjectModel
 					Db::getInstance()->delete(_DB_PREFIX_ . 'theme_meta', 'id_theme=' . $this->id . ' AND meta_page=' . $meta['meta_page']);
 
 				$values[] = array(
-					'id_theme'     => $this->id,
-					'meta_page'      => $meta['meta_page'],
-					'left_column'  => (int)$meta['left'],
+					'id_theme' => $this->id,
+					'meta_page' => $meta['meta_page'],
+					'left_column' => (int)$meta['left'],
 					'right_column' => (int)$meta['right']
 				);
 
