@@ -24,12 +24,29 @@
 */
 function quick_view() {
 	$('.quick-view').click(function() {
+		var url = this.rel.split('.html');
+		if(url.length == 1)
+		{
+			n = this.rel.indexOf('?');
+			if(n == -1)
+			{
+				url = this.rel+'?content_only=1';
+			}
+			else
+			{
+				url = this.rel+'&content_only=1';
+			}
+		}
+		else
+		{
+			url = url[0]+'.html?content_only=1'+url[1];
+		}
 		$.fancybox({
-			'padding':  0,
-			'width':    1087,
-			'height':   610,
-			'type':     'iframe',
-			'href':     this.rel+'&content_only=1'
+			'padding':0,
+			'width':1087,
+			'height':610,
+			'type':'iframe',
+			'href':url
 		});
 		ajaxCart.refresh();
 		return false;
