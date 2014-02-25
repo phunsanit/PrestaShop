@@ -32,38 +32,39 @@ $(document).ready(function()
 {
 	cancelFilter();
 	openCloseFilter();
-	
+
 	// Click on color
-	$('#layered_form input[type=button], #layered_form label.layered_color').live('click', function()
+	$(document).on('click', '#layered_form input[type=button], #layered_form label.layered_color', function()
 	{
 		if (!$('input[name='+$(this).attr('name')+'][type=hidden]').length)
 			$('<input />').attr('type', 'hidden').attr('name', $(this).attr('name')).val($(this).attr('rel')).appendTo('#layered_form');
 		else
 			$('input[name='+$(this).attr('name')+'][type=hidden]').remove();
-		reloadContent();
+		//reloadContent();
 	});
-	
+
 	// Click on checkbox
-	$('#layered_form input[type=checkbox], #layered_form input[type=radio], #layered_form select').live('change', function()
+	$(document).on('change', '#layered_form input[type=checkbox], #layered_form input[type=radio], #layered_form select', function()
 	{
 		reloadContent();
 	});
-	
+
 	// Changing content of an input text
-	$('#layered_form input.layered_input_range').live('keyup', function()
+	$(document).on('keyup', '#layered_form input.layered_input_range', function()
 	{
 		if ($(this).attr('timeout_id'))
 			window.clearTimeout($(this).attr('timeout_id'));
 
 		// IE Hack, setTimeout do not acept the third parameter
 		var reference = this;
-		
-		$(this).attr('timeout_id', window.setTimeout(function(it) {
+
+		$(this).attr('timeout_id', window.setTimeout(function(it)
+		{
 			if (!$(it).attr('id'))
 				it = reference;
-			
+
 			var filter = $(it).attr('id').replace(/^layered_(.+)_range_.*$/, '$1');
-			
+
 			var value_min = parseInt($('#layered_'+filter+'_range_min').val()); 
 			if (isNaN(value_min)) 
 				value_min = 0;
@@ -73,42 +74,44 @@ $(document).ready(function()
 			if (isNaN(value_max)) 
 				value_max = 0;
 			$('#layered_'+filter+'_range_max').val(value_max);
-			
+
 			if (value_max < value_min) {
 				$('#layered_'+filter+'_range_max').val($(it).val());
 				$('#layered_'+filter+'_range_min').val($(it).val());
 			}
-			reloadContent();
+			//reloadContent();
 		}, 500, this));
 	});
 
-	$('#layered_block_left .radio').live('click', function() {
+	$(document).on('click', '#layered_block_left .radio', function(e)
+	{
 		var name = $(this).attr('name');
-		$.each($(this).parent().parent().find('input[type=button]'), function (it, item) {
+		$.each($(this).parent().parent().find('input[type=button]'), function(it, item)
+		{
 			if ($(item).hasClass('on') && $(item).attr('name') != name) {
 				$(item).click();
 			}
 		});
 		return true;
 	});
-	
+
 	// Click on label
-	$('#layered_block_left label a').live({
-		click: function() {
-			var disable = $(this).parent().parent().find('input').attr('disabled');
-			if (disable == ''
-			|| typeof(disable) == 'undefined'
-			|| disable == false)
-			{
-				$(this).parent().parent().find('input').click();
-				reloadContent();
-			}
-			return false;
+	$(document).on('click', '#layered_block_left label a', function()
+	{
+		var disable = $(this).parent().parent().find('input').attr('disabled');
+		if (disable == ''
+		|| typeof(disable) == 'undefined'
+		|| disable == false)
+		{
+			$(this).parent().parent().find('input').click();
+			//reloadContent();
 		}
+		return false;
 	});
-	
+
 	layered_hidden_list = {};
-	$('.hide-action').live('click', function() {
+	$(document).on('click', '.hide-action', function()
+	{
 		if (typeof(layered_hidden_list[$(this).parent().find('ul').attr('id')]) == 'undefined' || layered_hidden_list[$(this).parent().find('ul').attr('id')] == false)
 		{
 			layered_hidden_list[$(this).parent().find('ul').attr('id')] = true;
@@ -119,11 +122,12 @@ $(document).ready(function()
 		}
 		hideFilterValueAction(this);
 	});
-	$('.hide-action').each(function() {
+	$('.hide-action').each(function()
+	{
 		hideFilterValueAction(this);
 	});
 
-	// To be sure there is no other events attached to the selectProductSort, change the ID
+	// To be sure there is no other events attached to the selectPrductSort, change the ID
 	var id = 1;
 	while ($('#selectPrductSort').length) { // Because ids are duplicated
 		// Unbind event change on #selectPrductSort
@@ -135,26 +139,18 @@ $(document).ready(function()
 		id++;
 	}
 
-	while ($('#selectProductSort').length) { // Because ids are duplicated
-		// Unbind event change on #selectProductSort
-		$('#selectProductSort').unbind('change');
-		$('#selectProductSort').attr('onchange', '');
-		$('#selectProductSort').addClass('selectProductSort');
-		$('#selectProductSort').attr('id', 'selectProductSort'+id);
-		$('label[for=selectProductSort]').attr('for', 'selectProductSort'+id);
-		id++;
-	}
-	
-	// Since 1.5, event is add to .selectProductSort and not to #selectProductSort
-	setTimeout(function() {
+	// Since 1.5, event is add to .selectProductSort and not to #selectPrductSort
+	setTimeout(function()
+	{
 		$('.selectProductSort').unbind('change');
 	}, 100);
-	
-	$('.selectProductSort').live('change', function(event) {
+
+	$(document).on('change', '.selectProductSort', function(event)
+	{
 		$('.selectProductSort').val($(this).val());
-		reloadContent();
+		//reloadContent();
 	});
-	
+
 	// To be sure there is no other events attached to the nb_item, change the ID
 	var id = 1;
 	while ($('#nb_item').length) { // Because ids are duplicated
@@ -166,15 +162,16 @@ $(document).ready(function()
 		$('label[for=nb_item]').attr('for', 'nb_item'+id);
 		id++;
 	}
-	$('.nb_item').live('change', function(event) {
+	$(document).on('change', '.selectProductSort', function(event)
+	{
 		$('.nb_item').val($(this).val());
-		reloadContent();
+		//reloadContent();
 	});
-	
+
 	paginationButton();
 	initLayered();
 });
-	
+
 function hideFilterValueAction(it)
 {
 	if (typeof(layered_hidden_list[$(it).parent().find('ul').attr('id')]) == 'undefined' || layered_hidden_list[$(it).parent().find('ul').attr('id')] == false)
@@ -203,9 +200,10 @@ function addSlider(type, data, unit, format)
 
 function initSliders()
 {
-	$(sliderList).each(function(i, slider){
+	$(sliderList).each(function(i, slider)
+	{
 		$('#layered_'+slider['type']+'_slider').slider(slider['data']);
-		
+
 		var from = '';
 		var to = '';
 		switch (slider['format'])
@@ -238,24 +236,29 @@ function initLayered()
 	}
 }
 
-function paginationButton() {
-	$('#pagination a').not(':hidden').each(function () {
-		if ($(this).attr('href').search(/[&|\?]p=/) == -1)
-		    var page = 1;
-		else
-		    var page = $(this).attr('href').replace(/^.*[&|\?]p=(\d+).*$/, '$1');
-
+function paginationButton()
+{
+	$('#pagination a').not(':hidden').each(function()
+	{
+		if ($(this).attr('href').search(/&|\?p=/) == -1) {
+			var page = 1;
+		}
+		else {
+			var page = $(this).attr('href').replace(/^.*[&|\?]p=(\d+).*$/, '$1');
+		}
 		var location = window.location.href.replace(/#.*$/, '');
 		$(this).attr('href', location+current_friendly_url.replace(/\/page-(\d+)/, '')+'/page-'+page);
 	});
-	$('#pagination li').not('.current, .disabled').each(function () {
+	$('#pagination li').not('.current, .disabled').each(function()
+	{
 		var nbPage = 0;
 		if ($(this).attr('id') == 'pagination_next')
 			nbPage = parseInt($('#pagination li.current').children().html())+ 1;
 		else if ($(this).attr('id') == 'pagination_previous')
 			nbPage = parseInt($('#pagination li.current').children().html())- 1;
-	
-		$(this).children().click(function () {
+
+		$(this).children().click(function()
+		{
 			if (nbPage == 0)
 				p = parseInt($(this).html()) + parseInt(nbPage);
 			else
@@ -270,7 +273,7 @@ function paginationButton() {
 
 function cancelFilter()
 {
-	$('#enabled_filters a').live('click', function(e)
+	$(document).on('click', '#enabled_filters a', function(e)
 	{
 		if ($(this).attr('rel').search(/_slider$/) > 0)
 		{
@@ -299,14 +302,14 @@ function cancelFilter()
 				$('#layered_form input[type=hidden][name='+$(this).attr('rel')+']').remove();
 			}
 		}
-		reloadContent();
+		//reloadContent();
 		e.preventDefault();
 	});
 }
 
 function openCloseFilter()
 {
-	$('#layered_form span.layered_close a').live('click', function(e)
+	$(document).on('click', '#layered_form span.layered_close a', function(e)
 	{
 		if ($(this).html() == '&lt;')
 		{
@@ -320,34 +323,34 @@ function openCloseFilter()
 			$(this).html('&lt;');
 			$(this).parent().addClass('closed');
 		}
-		
+
 		e.preventDefault();
 	});
 }
 
-function stopAjaxQuery() {
+function stopAjaxQuery()
+{
 	if (typeof(ajaxQueries) == 'undefined')
 		ajaxQueries = new Array();
-	for(i = 0; i < ajaxQueries.length; i++) {
-		if (typeof ajaxQueries[i] != 'undefined')
-			ajaxQueries[i].abort();
-	}		
+	for(i = 0; i < ajaxQueries.length; i++)
+		ajaxQueries[i].abort();
 	ajaxQueries = new Array();
 }
 
 function reloadContent(params_plus)
 {
 	stopAjaxQuery();
-	
+
 	if (!ajaxLoaderOn)
 	{
-		$('#product_list').prepend($('#layered_ajax_loader').html());
-		$('#product_list').css('opacity', '0.7');
+		$('.product_list').prepend($('#layered_ajax_loader').html());
+		$('.product_list').css('opacity', '0.7');
 		ajaxLoaderOn = 1;
 	}
-	
+
 	data = $('#layered_form').serialize();
-	$('.layered_slider').each( function () {
+	$('.layered_slider').each( function()
+	{
 		var sliderStart = $(this).slider('values', 0);
 		var sliderStop = $(this).slider('values', 1);
 		if (typeof(sliderStart) == 'number' && typeof(sliderStop) == 'number')
@@ -361,14 +364,15 @@ function reloadContent(params_plus)
 			data += '&layered_'+sliderType+'_slider='+$('#layered_'+sliderType+'_range_min').val()+'_'+$('#layered_'+sliderType+'_range_max').val();
 		}
 	});
-	
-	$('#layered_form .select option').each( function () {
+
+	$('#layered_form .select option').each( function()
+	{
 		if($(this).attr('id') && $(this).parent().val() == $(this).val())
 		{
 			data += '&'+$(this).attr('id') + '=' + $(this).val();
 		}
 	});
-	
+
 	if ($('.selectProductSort').length && $('.selectProductSort').val())
 	{
 		if ($('.selectProductSort').val().search(/orderby=/) > 0)
@@ -390,21 +394,22 @@ function reloadContent(params_plus)
 	{
 		data += '&n='+$('.nb_item').val();
 	}
-	
+
 	var slideUp = true;
 	if (params_plus == undefined)
 	{
 		params_plus = '';
 		slideUp = false;
 	}
-	
+
 	// Get nb items per page
 	var n = '';
-	$('#pagination #nb_item').children().each(function(it, option) {
+	$('#pagination #nb_item').children().each(function(it, option)
+	{
 		if (option.selected)
 			n = '&n='+option.value;
 	});
-	
+
 	ajaxQuery = $.ajax(
 	{
 		type: 'GET',
@@ -415,30 +420,32 @@ function reloadContent(params_plus)
 		success: function(result)
 		{
 			$('#layered_block_left').replaceWith(utf8_decode(result.filtersBlock));
-			
-			$('.category-product-count').html(result.categoryCount);
-			
-			if (result.productList)
-				$('#product_list').replaceWith(utf8_decode(result.productList));
-			else
-				$('#product_list').html('');
 
-			$('#product_list').css('opacity', '1');
+			$('.category-product-count').html(result.categoryCount);
+
+			if (result.productList)
+				$('.product_list').replaceWith(utf8_decode(result.productList));
+			else
+				$('.product_list').html('');
+
+			$('.product_list').css('opacity', '1');
 			if ($.browser.msie) // Fix bug with IE8 and aliasing
-				$('#product_list').css('filter', '');
+				$('.product_list').css('filter', '');
 
 			if (result.pagination.search(/[^\s]/) >= 0) {
 				if ($(result.pagination).find('ul.pagination').length)
 				{
 					$('div#pagination').show();
-					$('ul.pagination').each(function () {
+					$('ul.pagination').each(function()
+					{
 						$(this).replaceWith($(result.pagination).find('ul.pagination'));
 					});
 				}
 				else if (!$('ul.pagination').length)
 				{
 					$('div#pagination').show();
-					$('div#pagination').each(function () {
+					$('div#pagination').each(function()
+					{
 						$(this).html($(result.pagination));
 					});
 				}
@@ -453,34 +460,36 @@ function reloadContent(params_plus)
 				$('ul.pagination').html('');
 				$('div#pagination').hide();
 			}
-			
+
 			paginationButton();
 			ajaxLoaderOn = 0;
-			
+
 			// On submiting nb items form, relaod with the good nb of items
-			$('#pagination form').submit(function() {
+			$('#pagination form').submit(function()
+			{
 				val = $('#pagination #nb_item').val();
-				$('#pagination #nb_item').children().each(function(it, option) {
+				$('#pagination #nb_item').children().each(function(it, option)
+				{
 					if (option.value == val)
 						$(option).attr('selected', true);
 					else
 						$(option).removeAttr('selected');
 				});
 				// Reload products and pagination
-				reloadContent();
+				//reloadContent();
 				return false;
 			});
 			if (typeof(ajaxCart) != "undefined")
 				ajaxCart.overrideButtonsInThePage();
-			
+
 			if (typeof(reloadProductComparison) == 'function')
 				reloadProductComparison();
 			initSliders();
-			
+
 			// Currente page url
 			if (typeof(current_friendly_url) == 'undefined')
 				current_friendly_url = '#';
-				
+
 			// Get all sliders value
 			$(['price', 'weight']).each(function(it, sliderType)
 			{
@@ -503,12 +512,13 @@ function reloadContent(params_plus)
 				current_friendly_url = '#/';
 			window.location = current_friendly_url;
 			lockLocationChecking = true;
-			
+
 			if(slideUp)
-				$.scrollTo('#product_list', 400);
+				$.scrollTo('.product_list', 400);
 			updateProductUrl();
-			
-			$('.hide-action').each(function() {
+
+			$('.hide-action').each(function()
+			{
 				hideFilterValueAction(this);
 			});
 		}
@@ -527,7 +537,7 @@ function initLocationChange(func, time)
 			// Don't reload page if current_friendly_url and real url match
 			if (current_friendly_url.replace(/^#(\/)?/, '') == getUrlParams().replace(/^#(\/)?/, ''))
 				return;
-			
+
 			lockLocationChecking = true;
 			reloadContent('&selected_filters='+getUrlParams().replace(/^#/, ''));
 		}
@@ -550,12 +560,13 @@ function updateProductUrl()
 {
 	// Adding the filters to URL product
 	if (typeof(param_product_url) != 'undefined' && param_product_url != '' && param_product_url !='#') {
-		$.each($('ul#product_list li.ajax_block_product .product_img_link,'+
-				'ul#product_list li.ajax_block_product h3 a,'+
-				'ul#product_list li.ajax_block_product .product_desc a,'+
-				'ul#product_list li.ajax_block_product .lnk_view'), function() {
-			$(this).attr('href', $(this).attr('href') + param_product_url);
-		});
+		$.each($('ul.product_list li.ajax_block_product .product_img_link,'+
+				'ul.product_list li.ajax_block_product h3 a,'+
+				'ul.product_list li.ajax_block_product .product_desc a,'+
+				'ul.product_list li.ajax_block_product .lnk_view'), function()
+				{
+					$(this).attr('href', $(this).attr('href') + param_product_url);
+				});
 	}
 }
 
@@ -563,7 +574,8 @@ function updateProductUrl()
 /**
  * Copy of the php function utf8_decode()
  */
-function utf8_decode (utfstr) {
+function utf8_decode (utfstr)
+{
 	var res = '';
 	for (var i = 0; i < utfstr.length;) {
 		var c = utfstr.charCodeAt(i);
