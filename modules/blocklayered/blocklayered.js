@@ -79,7 +79,7 @@ $(document).ready(function()
 				$('#layered_'+filter+'_range_max').val($(it).val());
 				$('#layered_'+filter+'_range_min').val($(it).val());
 			}
-			//reloadContent();
+			reloadContent();
 		}, 500, this));
 	});
 
@@ -148,7 +148,7 @@ $(document).ready(function()
 	$(document).on('change', '.selectProductSort', function(event)
 	{
 		$('.selectProductSort').val($(this).val());
-		//reloadContent();
+		reloadContent();
 	});
 
 	// To be sure there is no other events attached to the nb_item, change the ID
@@ -302,7 +302,7 @@ function cancelFilter()
 				$('#layered_form input[type=hidden][name='+$(this).attr('rel')+']').remove();
 			}
 		}
-		//reloadContent();
+		reloadContent();
 		e.preventDefault();
 	});
 }
