@@ -40,7 +40,7 @@ $(document).ready(function()
 			$('<input />').attr('type', 'hidden').attr('name', $(this).attr('name')).val($(this).attr('rel')).appendTo('#layered_form');
 		else
 			$('input[name='+$(this).attr('name')+'][type=hidden]').remove();
-		//reloadContent();
+		reloadContent();
 	});
 
 	// Click on checkbox
@@ -104,7 +104,7 @@ $(document).ready(function()
 		|| disable == false)
 		{
 			$(this).parent().parent().find('input').click();
-			//reloadContent();
+			reloadContent();
 		}
 		return false;
 	});
@@ -165,7 +165,7 @@ $(document).ready(function()
 	$(document).on('change', '.selectProductSort', function(event)
 	{
 		$('.nb_item').val($(this).val());
-		//reloadContent();
+		reloadContent();
 	});
 
 	paginationButton();
