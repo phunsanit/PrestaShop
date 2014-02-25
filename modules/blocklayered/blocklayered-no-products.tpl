@@ -22,6 +22,6 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registred Trademark & Property of PrestaShop SA
 *}
-<div id="product_list" class="clear">
+<div class="product_list clear">
 	<p class="warning">{l s='There are no products.' mod='blocklayered'}</p>
 </div>
