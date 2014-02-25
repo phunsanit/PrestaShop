@@ -476,7 +476,7 @@ function reloadContent(params_plus)
 						$(option).removeAttr('selected');
 				});
 				// Reload products and pagination
-				//reloadContent();
+				reloadContent();
 				return false;
 			});
 			if (typeof(ajaxCart) != "undefined")
