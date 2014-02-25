@@ -40,7 +40,7 @@ $(document).ready(function()
 			$('<input />').attr('type', 'hidden').attr('name', $(this).attr('name')).val($(this).attr('rel')).appendTo('#layered_form');
 		else
 			$('input[name='+$(this).attr('name')+'][type=hidden]').remove();
-		//reloadContent();
+		reloadContent();
 	});
 
 	// Click on checkbox
@@ -79,7 +79,7 @@ $(document).ready(function()
 				$('#layered_'+filter+'_range_max').val($(it).val());
 				$('#layered_'+filter+'_range_min').val($(it).val());
 			}
-			//reloadContent();
+			reloadContent();
 		}, 500, this));
 	});
 
@@ -104,7 +104,7 @@ $(document).ready(function()
 		|| disable == false)
 		{
 			$(this).parent().parent().find('input').click();
-			//reloadContent();
+			reloadContent();
 		}
 		return false;
 	});
@@ -148,7 +148,7 @@ $(document).ready(function()
 	$(document).on('change', '.selectProductSort', function(event)
 	{
 		$('.selectProductSort').val($(this).val());
-		//reloadContent();
+		reloadContent();
 	});
 
 	// To be sure there is no other events attached to the nb_item, change the ID
@@ -165,7 +165,7 @@ $(document).ready(function()
 	$(document).on('change', '.selectProductSort', function(event)
 	{
 		$('.nb_item').val($(this).val());
-		//reloadContent();
+		reloadContent();
 	});
 
 	paginationButton();
@@ -302,7 +302,7 @@ function cancelFilter()
 				$('#layered_form input[type=hidden][name='+$(this).attr('rel')+']').remove();
 			}
 		}
-		//reloadContent();
+		reloadContent();
 		e.preventDefault();
 	});
 }
@@ -476,7 +476,7 @@ function reloadContent(params_plus)
 						$(option).removeAttr('selected');
 				});
 				// Reload products and pagination
-				//reloadContent();
+				reloadContent();
 				return false;
 			});
 			if (typeof(ajaxCart) != "undefined")
