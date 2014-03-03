@@ -38,7 +38,7 @@ class BlockNewProducts extends Module
 		$this->need_instance = 0;
 
 		$this->bootstrap = true;
-		parent::__construct();	
+		parent::__construct();
 
 		$this->displayName = $this->l('New products block');
 		$this->description = $this->l('Displays a block featuring your store\'s newest products.');
