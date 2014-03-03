@@ -2951,7 +2951,7 @@ class BlockLayered extends Module
 		
 		$products = $this->getProductByFilters($selected_filters);
 		$products = Product::getProductsProperties((int)$cookie->id_lang, $products);
-		
+
 		$nb_products = $this->nbr_products;
 		$range = 2; /* how many pages around page selected */
 		
