@@ -18,7 +18,7 @@ function tinySetup(config)
 	//	theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,|,ltr,rtl,|",
 	//	theme_advanced_buttons4 : "styleprops,|,cite,abbr,acronym,del,ins,attribs,pagebreak",
 		theme_advanced_buttons3 : "",
-		theme_advanced_buttons4 : "",	
+		theme_advanced_buttons4 : "",
 		theme_advanced_toolbar_location : "top",
 		theme_advanced_toolbar_align : "left",
 		//theme_advanced_statusbar_location : "bottom",
