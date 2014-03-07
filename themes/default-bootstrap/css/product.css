@@ -408,6 +408,7 @@ span.view_scroll_spacer {
 }
 #attributes fieldset {
 	padding-bottom: 3px;
+	clear:both;
 }
 #attributes fieldset label {
 	vertical-align: top;
