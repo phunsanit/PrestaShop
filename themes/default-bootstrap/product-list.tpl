@@ -273,10 +273,10 @@
 							if (availability != null) {
 								html += '<span class="availability">'+ availability +'</span>';
 							}
-						html += '</div>';	
+						html += '</div>';
 						html += '<div class="right-block col-xs-4 col-xs-12 col-md-4"><div class="right-block-content row">';
 							var price = $(element).find('.content_price').html();       // check : catalog mode is enabled
-							if (price != null) { 
+							if (price != null) {
 								html += '<div class="content_price col-xs-5 col-md-12">'+ price + '</div>';
 							}
 							html += '<div class="button-container col-xs-7 col-md-12">'+ $(element).find('.button-container').html() +'</div>';
@@ -322,7 +322,7 @@
 						}
 					html += '</div>';
 					html += '<div class="functional-buttons clearfix">' + $(element).find('.functional-buttons').html() + '</div>';
-				html += '</div>';		
+				html += '</div>';	
 				$(element).html(html);
 				});
 				$('.display').find('li#grid').addClass('selected');
@@ -333,7 +333,7 @@
 				if (typeof quick_view != 'undefined') 	// qick view button reload
 					quick_view();
 				blockHover();
-			}	
+			}
 		}
 	view = $.totalStorage('display');
 	if (view) {
