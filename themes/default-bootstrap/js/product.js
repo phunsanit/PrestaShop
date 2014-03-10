@@ -131,9 +131,13 @@ function findCombination(firstTime)
 			updateDisplay();
 
 			if(typeof(firstTime) != 'undefined' && firstTime)
-				refreshProductImages(0);
-			else
+			{
 				refreshProductImages(combinations[combination]['idCombination']);
+			}
+			else
+			{
+				refreshProductImages(combinations[combination]['idCombination']);
+			}
 			//leave the function because combination has been found
 			return;
 		}
