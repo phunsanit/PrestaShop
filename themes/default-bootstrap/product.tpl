@@ -563,7 +563,7 @@
 	</div> <!-- end primary_block -->
 
 	{if !$content_only}
-		
+
 		{if $product->description}
 			<!-- More info -->
 			<section class="page-product-box">
@@ -582,10 +582,10 @@
 				<h3 class="page-product-heading">{l s='Data sheet'}</h3>
 		{/if}
 		{if isset($features) && $features}
-				<table class="table-data-sheet">			
+				<table class="table-data-sheet">
 					{foreach from=$features item=feature}
 					<tr class="{cycle values="odd,even"}">
-						{if isset($feature.value)}			    
+						{if isset($feature.value)}
 						<td>{$feature.name|escape:'html':'UTF-8'}</td>
 						<td>{$feature.value|escape:'html':'UTF-8'}</td>
 						{/if}
@@ -595,7 +595,7 @@
 			</section>
 			<!--end Data sheet -->
 		{/if}
-		
+
 		<!--HOOK_PRODUCT_TAB -->
 		<section class="page-product-box">
 			{$HOOK_PRODUCT_TAB}
@@ -833,7 +833,7 @@
 						</span>
 					</p>
 				</form>
-				<p class="clear required"><sup>*</sup> {l s='required fields'}</p>	
+				<p class="clear required"><sup>*</sup> {l s='required fields'}</p>
 			</section>
 			<!--end Customization -->
 			{/if}
