@@ -160,7 +160,7 @@
 										data-id-product="{$product.id_product|intval}">
 										<span>{l s='Add to cart'}</span>
 									</a>
-								{/if}						
+								{/if}
 							{else}
 								<span class="button ajax_add_to_cart_button btn btn-default disabled">
 									<span>{l s='Add to cart'}</span>
@@ -171,7 +171,7 @@
 							<span>{l s='More'}</span>
 						</a>
 					</div>
-					
+
 					{if isset($product.color_list)}
 						<div class="color-list-container">{$product.color_list} </div>
 					{/if}
@@ -244,7 +244,7 @@
 				if ($('body').find('.container').width() == 1170)
 				$(this).parent().removeClass('hovered');
 			}
-		)});	
+		)});
 	}
 </script>
 {if $page_name !='index' && $page_name !='product'}  <!--// excluding page for Grid/List-->
@@ -284,11 +284,11 @@
 						html += '</div>';
 					html += '</div></div>';
 				$(element).html(html);
-				});		
+				});	
 				$('.display').find('li#list').addClass('selected');
 				$('.display').find('li#grid').removeAttr('class');
 				$.totalStorage('display', 'list');
-				if (typeof ajaxCart != 'undefined')      // cart button reload
+				if (typeof ajaxCart != 'undefined')     // cart button reload
 					ajaxCart.overrideButtonsInThePage();
 				if (typeof quick_view != 'undefined') 	// qick view button reload
 					quick_view();
@@ -322,12 +322,12 @@
 						}
 					html += '</div>';
 					html += '<div class="functional-buttons clearfix">' + $(element).find('.functional-buttons').html() + '</div>';
-				html += '</div>';	
+				html += '</div>';
 				$(element).html(html);
 				});
 				$('.display').find('li#grid').addClass('selected');
 				$('.display').find('li#list').removeAttr('class');
-				$.totalStorage('display', 'grid');			
+				$.totalStorage('display', 'grid');
 				if (typeof ajaxCart != 'undefined') 	// cart button reload
 					ajaxCart.overrideButtonsInThePage();
 				if (typeof quick_view != 'undefined') 	// qick view button reload
