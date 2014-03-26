@@ -36,7 +36,8 @@ $(document).ready(function()
 	// Click on color
 	$(document).on('click', '#layered_form input[type=button], #layered_form label.layered_color', function()
 	{
-		if (!$('input[name='+$(this).attr('name')+'][type=hidden]').length)
+		//if (!$('input[name='+$(this).attr('name')+'][type=hidden]').length)
+		if ($('input[name='+$(this).attr('name')+'][type=hidden]').length)
 			$('<input />').attr('type', 'hidden').attr('name', $(this).attr('name')).val($(this).attr('rel')).appendTo('#layered_form');
 		else
 			$('input[name='+$(this).attr('name')+'][type=hidden]').remove();
