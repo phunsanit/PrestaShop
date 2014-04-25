@@ -30,7 +30,7 @@
 	<ul>
 		{if $blockcontactinfos_company != ''}<li><strong>{$blockcontactinfos_company|escape:'html':'UTF-8'}</strong></li>{/if}
 		{if $blockcontactinfos_address != ''}<li><pre>{$blockcontactinfos_address|escape:'html':'UTF-8'}</pre></li>{/if}
-		{if $blockcontactinfos_phone != ''}<li>{l s='Tel' mod='blockcontactinfos'} {$blockcontactinfos_phone|escape:'html':'UTF-8'}</li>{/if}
+		{if $blockcontactinfos_phone != ''}<li>{l s='Tel' mod='blockcontactinfos'}<a href="tel:{$blockcontactinfos_phone|escape:'html':'UTF-8'}">{$blockcontactinfos_phone|escape:'html':'UTF-8'}</a></li>{/if}
 		{if $blockcontactinfos_email != ''}<li>{l s='Email' mod='blockcontactinfos'} {mailto address=$blockcontactinfos_email|escape:'html':'UTF-8' encode="hex"}</li>{/if}
 	</ul>
 </div>
