@@ -178,9 +178,9 @@
 				{$confirmation}
 			</p>
 		{/if}
-		<!-- right infos-->  
+		<!-- right infos-->
 		<div id="pb-right-column" class="col-xs-12 col-sm-4 col-md-5">
-			<!-- product img-->        
+			<!-- product img-->
 			<div id="image-block" class="clearfix">
 				{if $product->on_sale}
 					<span class="sale-box">
@@ -188,8 +188,8 @@
 					</span>
 				{elseif $product->specificPrice AND $product->specificPrice.reduction AND $productPriceWithoutReduction > $productPrice}
 					<span class="discount">{l s='Reduced price!'}</span>
-				{/if} 
-				
+				{/if}
+
 				{if $have_image}
 					<span id="view_full_size">
 						{if $jqZoomEnabled && $have_image && !$content_only}
@@ -259,7 +259,7 @@
 									{assign var=imageTitlte value=$product->name|escape:'html':'UTF-8'}
 								{/if}
 								<li id="thumbnail_{$image.id_image}"{if $smarty.foreach.thumbnails.last} class="last"{/if}>
-									<a 
+									<a
 										{if $jqZoomEnabled && $have_image && !$content_only}
 											href="javascript:void(0);"
 											rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"
@@ -304,14 +304,14 @@
 				</p>
 			{/if}
 		</div> <!-- end pb-right-column -->
-		<!-- end right infos--> 
+		<!-- end right infos-->
 
 		<!-- left infos -->
 		<div id="pb-left-column" class="col-xs-12 col-sm-4">
 			{if $product->online_only}
 				<p class="online_only">{l s='Online only'}</p>
 			{/if}
-	
+
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
 			<p id="product_reference" {if isset($groups) OR !$product->reference}style="display: none;"{/if}>
 				<label>{l s='Model'} </label>
@@ -334,7 +334,7 @@
 						<div class="short_description_pack">
 						<h3>{l s='Pack content'}</h3>
 							{foreach from=$packItems item=packItem}
-							
+
 							<div class="pack_content">
 								{$packItem.pack_quantity} x <a href="{$link->getProductLink($packItem.id_product, $packItem.link_rewrite, $packItem.category)|escape:'html':'UTF-8'}">{$packItem.name|escape:'html':'UTF-8'}</a>
 								<p>{$packItem.description_short}</p>
@@ -353,25 +353,25 @@
 					<span {if $product->quantity == 1} style="display: none;"{/if} id="quantityAvailableTxtMultiple">{l s='Items'}</span>
 				</p>
 			{/if}
-			
+
 			<!-- availability -->
 			<p id="availability_statut"{if ($product->quantity <= 0 && !$product->available_later && $allow_oosp) OR ($product->quantity > 0 && !$product->available_now) OR !$product->available_for_order OR $PS_CATALOG_MODE} style="display: none;"{/if}>
 				{*<span id="availability_label">{l s='Availability:'}</span>*}
-				<span id="availability_value"{if $product->quantity <= 0} class="warning_inline"{/if}>{if $product->quantity <= 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}</span>				
+				<span id="availability_value"{if $product->quantity <= 0} class="warning_inline"{/if}>{if $product->quantity <= 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}</span>
 			</p>
-			
+
 			<p class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties OR $product->quantity <= 0) OR $allow_oosp OR !$product->available_for_order OR $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</p>
-			
+
 			<p id="availability_date"{if ($product->quantity > 0) OR !$product->available_for_order OR $PS_CATALOG_MODE OR !isset($product->available_date) OR $product->available_date < $smarty.now|date_format:'%Y-%m-%d'} style="display: none;"{/if}>
 				<span id="availability_date_label">{l s='Availability date:'}</span>
 				<span id="availability_date_value">{dateFormat date=$product->available_date full=false}</span>
 			</p>
-			
+
 			<!-- Out of stock hook -->
 			<div id="oosHook"{if $product->quantity > 0} style="display: none;"{/if}>
 				{$HOOK_PRODUCT_OOS}
 			</div>
-		
+
 			{if ($product->show_price AND !isset($restricted_country_mode)) OR isset($groups) OR $product->reference OR (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
 				<!-- add to cart form-->
 				<form id="buy_block" {if $PS_CATALOG_MODE AND !isset($groups) AND $product->quantity > 0}class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
@@ -401,7 +401,7 @@
 			{/if}
 		</div>
 		<!-- end left infos-->
-		
+
 		<!-- pb-right-column1-->
 		<div id="pb-right-column1" class="col-xs-12 col-sm-4 col-md-3">
 			<div class="box-info-product">
@@ -441,7 +441,7 @@
 								</span>
 							{/if}
 						</div> <!-- end prices -->
-						
+
 						<p id="reduction_amount" {if !$product->specificPrice OR $product->specificPrice.reduction_type != 'amount' || $product->specificPrice.reduction|intval ==0} style="display:none"{/if}>
 							<span id="reduction_amount_display">
 							{if $product->specificPrice AND $product->specificPrice.reduction_type == 'amount' AND $product->specificPrice.reduction|intval !=0}
@@ -449,7 +449,7 @@
 							{/if}
 							</span>
 						</p>
-				
+
 						{if $packItems|@count && $productPrice < $product->getNoPackPrice()}
 							<p class="pack_price">{l s='Instead of'} <span style="text-decoration: line-through;">{convertPrice price=$product->getNoPackPrice()}</span></p>
 						{/if}
@@ -574,8 +574,8 @@
 			</section>
 			<!--end  More info -->
 		{/if}
-		
-		
+
+
 		{if $features}
 			<!-- Data sheet -->
 			<section class="page-product-box">
@@ -615,7 +615,7 @@
 									{assign var='accessoryLink' value=$link->getProductLink($accessory.id_product, $accessory.link_rewrite, $accessory.category)}
 									<li class="item product-box ajax_block_product{if $smarty.foreach.accessories_list.first} first_item{elseif $smarty.foreach.accessories_list.last} last_item{else} item{/if} product_accessories_description">
 										<div class="product_desc">
-											<a 
+											<a
 												href="{$accessoryLink|escape:'html':'UTF-8'}"
 												title="{$accessory.legend|escape:'html':'UTF-8'}"
 												class="product-image product_image">
@@ -669,7 +669,7 @@
 							{/foreach}
 						</ul>
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!--end Accessories -->
 		{/if}
@@ -690,8 +690,8 @@
 						<tbody>
 							{foreach from=$quantity_discounts item='quantity_discount' name='quantity_discounts'}
 							<tr id="quantityDiscount_{$quantity_discount.id_product_attribute}" class="quantityDiscount_{$quantity_discount.id_product_attribute}">
-							<td>{$quantity_discount.quantity|intval}</td>             
-								
+							<td>{$quantity_discount.quantity|intval}</td>
+
 								<td>
 									{if $quantity_discount.price >= 0 OR $quantity_discount.reduction_type == 'amount'}
 										{if $display_discount_price}
